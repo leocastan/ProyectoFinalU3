@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Login Teacher</title>
+    <!--Stylesheets-->
+    <link rel="stylesheet" href="../static/css/estiloslogins.css">
+    <link rel="stylesheet" href="../static/css/style.css">   
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #sidebar{
+            height: 640px;
+        }
+        .footer{
+          margin: auto;
+          margin-top: 120%;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="wrapper d-flex align-items-stretch">
+            <nav id="sidebar">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                </div>
+                <div class="p-4">
+                  <h1><a href="index.html" class="logo">Inicio<span>Escuela ESPE</span></a></h1>
+                  <ul class="list-unstyled components mb-5">
+                      <li>
+                        <a href="loginAd"><span class="fa fa-user mr-3"></span> Ingresar Admin</a>
+                      </li>
+                      <li>
+                        <a href="loginAl"><span class="fa fa-briefcase mr-3"></span> Ingresar Alumno</a>
+                      </li>
+                      <li>
+                        <a href="loginDo"><span class="fa fa-users mr-3"></span>Ingresar Docente</a>
+                      </li>
+                    </ul>
+                  <div class="footer">
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                      Copyright &copy;<script>document.write(new Date().getFullYear());</script> TNTE. Cristian Bonilla | SRTA. Katherine Bravo<i class="icon-heart" aria-hidden="true"></i>
+                      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                  </div>
+                </div>
+            </div>
+            </nav>
+            <form method=POST action="{{ url_for('loginD') }}">
+                <h3>Login Docente</h3>
+                {% with messages = get_flashed_messages() %}
+            
+                {% if messages %}
+                <br />
+                {% for message in messages %}
+                <div class="alert alert-primary alert-dismissible" role="alert">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+                {% endif %}
+            
+                {% endwith %}
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control input" placeholder="Username" id="username" required>
+                <label for="password">Password</label>
+                <input type="password"  name="pass" class="form-control input" placeholder="Password" required> 
+                <label for="tusuario">Tipo de Usuario</label>
+                <input type="text"  name="Tusuario" class="form-control input" value="Docente" required>
+                <label for="tusuario">Clase</label>
+                <input type="radio" name="clase" class="radio" value="A">A
+                <input type="radio" name="clase" class="radio" value="B">B
+            
+            
+                <button style="color: white;" name="submitLogin" >Ingresar</button>
+            </form>
+    
+      </div>
+      <script src="../static/js/jquery.min.js"></script>
+      <script src="../static/js/popper.js"></script>
+      <script src="../static/js/bootstrap.min.js"></script>
+      <script src="../static/js/main.js"></script>
+    
+    </body>
+    </html>
