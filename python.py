@@ -136,8 +136,6 @@ def logAl():
 # ---------------------------------------
 # Register an Admin
 # ---------------------------------------
-
-
 @app.route('/regAdmin', methods=['POST', 'GET'])
 def regAdmin():
     if request.method == 'POST':
@@ -163,8 +161,6 @@ def regAdmin():
 # ---------------------------------------
 # Register a Teacher
 # ---------------------------------------
-
-
 @app.route('/regTeacher', methods=['POST', 'GET'])
 def regTeacher():
     if request.method == 'POST':
@@ -198,14 +194,11 @@ def docenteReg():
 # ---------------------------------------
 # Register a Student
 # ---------------------------------------
-
-
 @app.route('/regStudent', methods=['POST', 'GET'])
 def regStudent():
     if request.method == 'POST':
         users = mongo.db.Users
-        existing_user = users.find_one({'name': request.form['username']})
-
+        existing_user = users.find_one({'username': request.form['username']})
         if existing_user is None:
             if 'submitButton' in request.form:
                 users.insert_one({
@@ -227,8 +220,8 @@ def regStudent():
     return render_template('/regStudent.html')
 
 
-@app.route('/alumno')
-def alumnoReg():
+@app.route('/estudiante')
+def estudianteReg():
     if 'username' in session:
         return render_template('/regStudent.html')
     return render_template('/selUser.html')

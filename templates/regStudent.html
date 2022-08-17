@@ -63,19 +63,22 @@
     </nav>
   </div>
 
-
   <div class="d-flex justify-content-center">
 
     <div class="wrapper d-flex align-items-stretch">
       <div class="jumbotron">
         </nav>
-        
+
         <div id="content" class="p-4 p-md-5 pt-5">
-          <h2 class="mb-4 text-align-center">Ingrese nuevo Alumno</h2>
+          <h2 class="mb-4 text-align-center">Ingrese nuevo Estudiante</h2>
           <div class="wrap-login">
             <form method=POST action="{{ url_for('regStudent') }}">
-              <div class="text-center">
-                <img style="max-width: 50px" name="foto" src="https://images.emojiterra.com/twitter/512px/1f464.png" class="rounded" alt="...">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Fotografía</label>
+                <div>
+                  <center><input type="file" name="foto"></center>
+                </div>
+                
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Id_Institucional</label>
@@ -84,15 +87,15 @@
               </div>
               <div class="form-group">
                 <label for="nombre">Cedula</label>
-                <input type="text" class="form-control" name="Cedula" placeholder="Cedula">
+                <input type="text" class="form-control" name="cedula" placeholder="Cedula" required>
               </div>
               <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
               </div>
               <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+                <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Teléfono</label>
@@ -107,7 +110,7 @@
                 <select class="form-control" id="exampleFormControlSelect1" name="paralelo">
                   <option> A </option>
                   <option>B</option>
-                  <option>C</option>         
+                  <option>C</option>
                 </select>
               </div>
               <div class="form-group">
@@ -120,14 +123,15 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Username">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" name="pass" placeholder="Password">
+                <input type="password" class="form-control" name="pass" placeholder="Password" required>
               </div>
 
-              <button type="submit" name="submitButtonAlumno" class="btn btn-primary btn-block">Register</button>
+              <button type="submit" name="submitButton" class="btn btn-primary btn-block"
+                onclick="alert('Se registro al nuevo usuario administrador')">Registrar</button>
             </form>
           </div>
         </div>
@@ -135,7 +139,7 @@
     </div>
   </div>
 
-  
+
 
   <script src="../static/js/jquery.min.js"></script>
   <script src="../static/js/popper.js"></script>
