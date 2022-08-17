@@ -19,11 +19,11 @@ mongo = PyMongo(app)
 @app.route('/')
 def administrador():
     if 'username' in session:
-        return render_template('/regUser.html')
+        return render_template('/regAdmin.html')
     return render_template('/selUser.html')
 
 #---------------------------------------
-#Acceso para Administrador
+#Admin Access
 #---------------------------------------
 
 @app.route('/logAdmin', methods=['POST'])
@@ -55,7 +55,7 @@ def logAd():
     return render_template('/logAdmin.html')
 
 #---------------------------------------
-#Acceso para Docente
+#Teacher Access
 #---------------------------------------
 
 @app.route('/docente')
@@ -96,7 +96,7 @@ def logDo():
     return render_template('/logTeacher.html')
 
 #---------------------------------------
-#Acceso para Estudiante
+#Student Access
 #---------------------------------------
 
 @app.route('/logStudent', methods=['POST'])
@@ -126,10 +126,116 @@ def logStudent():
 def logAl():
     return render_template('/logStudent.html')
 
+#---------------------------------------
+#Register an Admin
+#---------------------------------------
+@app.route('/regAdmin', methods=['POST', 'GET'])
+def regAdmin():
+    if request.method == 'POST':
+        users = mongo.db.Users
+        existing_user = users.find_one({'name' : request.form['username']})
+        if existing_user is None:
+            if 'submitButton' in request.form:
+                users.insert_one({
+                    'id_Institucional' : request.form['id_Institucional'],
+                    'cedula' : request.form['cedula'],
+                    'nombre' : request.form['nombre'], 
+                    'apellido' : request.form['apellido'],
+                    'telefono' : request.form['telefono'],
+                    'direccion' : request.form['direccion'],
+                    'username' : request.form['username'], 
+                    'password' : request.form['pass'],
+                    'typeUser' : 'Administrador', })
+                session['username'] = request.form['username']
+            return redirect(url_for('administrador'))
+        return 'That username already exists!'
+    return render_template('/regAdmin.html')
 
+#---------------------------------------
+#Register a Teacher
+#---------------------------------------
+@app.route('/registerDocente', methods=['POST', 'GET'])
+def registerDoc():
+    if request.method == 'POST':
+        users = mongo.db.Users
+        existing_user = users.find_one({'name' : request.form['username']})
 
+        if existing_user is None:
+            if 'submitButtonAlumno' in request.form:
+                users.insert_one({
+                    'nombre' : request.form['nombre'], 
+                    'apellido' : request.form['apellido'],
+                    'name' : request.form['username'], 
+                    'password' : request.form['pass'],
+                    'clase' : request.form['paralelo'],
+                    'TUsuario' : 'Docente', })
+                session['username'] = request.form['username']
+            return redirect(url_for('docenteReg'))
+        return 'That username already exists!'
+    return render_template('/RegistroAlumno.html')
 
-#Main de la aplicacion
+@app.route('/docente')
+def docenteReg():
+    if 'username' in session:
+        return render_template('/RegistroDocente.html')
+    return render_template('/selectUser.html')
+
+#---------------------------------------
+#Register a Student
+#---------------------------------------
+@app.route('/registerAlumno', methods=['POST', 'GET'])
+def registerAl():
+    if request.method == 'POST':
+        users = mongo.db.Users
+        existing_user = users.find_one({'name' : request.form['username']})
+
+        if existing_user is None:
+            if 'submitButtonAlumno' in request.form:
+                users.insert_one({
+                    'nombre' : request.form['nombre'], 
+                    'apellido' : request.form['apellido'],
+                    'name' : request.form['username'], 
+                    'password' : request.form['pass'],
+                    'foto' : request.form['foto'],
+                    'paralelo' : request.form['paralelo'],
+                    'TUsuario' : 'Alumno', })
+                session['username'] = request.form['username']
+            return redirect(url_for('alumnoReg'))
+        return 'That username already exists!'
+    return render_template('/RegistroAlumno.html')
+
+@app.route('/alumno')
+def alumnoReg():
+    if 'username' in session:
+        return render_template('/RegistroAlumno.html')
+    return render_template('/selectUser.html')
+
+#---------------------------------------
+#Cerrar Sesion
+#---------------------------------------
+@app.route('/login')
+def CerrarSession():
+    session.pop('username',None)
+    return render_template('/selUser.html')
+
+#Ruta a app administrador
+@app.route('/loginAdmin')
+def logAdmin1():
+    return render_template('/administrador.html')
+
+#Ruta a app docente
+@app.route('/RegisterUsers')
+def logUser():
+    return render_template('/RegistratUser.html')
+
+#Ruta a app alumno
+@app.route('/loginAlumno')
+def logAlumno():
+    return render_template('/IAlumnos.html')
+
+#---------------------------------------
+#Main Method
+#---------------------------------------
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(debug=True)
