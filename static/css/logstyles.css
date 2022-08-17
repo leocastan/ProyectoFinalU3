@@ -1,0 +1,80 @@
+.background{
+    width: 400px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+
+
+form{
+    height: 700px;
+    width: 500px;
+    background-color: rgb(18, 231, 217);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgb(0, 0, 0);
+    padding: 50px 35px;
+    margin-top: 20px;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+form *{
+    font-family: 'Poppins', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #000000;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.input{
+    display: block;
+    height: 100px;
+    width: 100%;
+	background: rgb(0 123 255);;
+    border-radius: 3px;
+    padding: 10px 10px;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 300;
+    color: black;
+}
+
+.radios{
+    margin: 25px;
+}
+
+.radio{
+    margin: 50px;
+}
+::placeholder{
+    color: #4a4545;
+    background-color: white;
+}
+button{
+    margin-top: 5px;
+    width: 100%;
+    padding: 15px 0;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
