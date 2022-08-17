@@ -154,8 +154,8 @@ def regAdmin():
 #---------------------------------------
 #Register a Teacher
 #---------------------------------------
-@app.route('/registerDocente', methods=['POST', 'GET'])
-def registerDoc():
+@app.route('/regTeacher', methods=['POST', 'GET'])
+def regTeacher():
     if request.method == 'POST':
         users = mongo.db.Users
         existing_user = users.find_one({'name' : request.form['username']})
@@ -172,13 +172,13 @@ def registerDoc():
                 session['username'] = request.form['username']
             return redirect(url_for('docenteReg'))
         return 'That username already exists!'
-    return render_template('/RegistroAlumno.html')
+    return render_template('/regTeacher.html')
 
-@app.route('/docente')
-def docenteReg():
-    if 'username' in session:
-        return render_template('/RegistroDocente.html')
-    return render_template('/selectUser.html')
+#@app.route('/docente')
+# 3def docenteReg():
+  #  if 'username' in session:
+   #     return render_template('/regTeacher.html')
+    #return render_template('/selUser.html')
 
 #---------------------------------------
 #Register a Student
