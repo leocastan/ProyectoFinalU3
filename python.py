@@ -29,7 +29,7 @@ def administrador():
 @app.route('/logAdmin', methods=['POST'])
 def logAdmin():
     users = mongo.db.Users
-    login_user = users.find_one({'name' : request.form['username']})
+    login_user = users.find_one({'username' : request.form['username']})
     login_pass = users.find_one({'password' : request.form['pass']}) 
     login_admin = "Administrador" 
 
@@ -67,7 +67,7 @@ def docente():
 @app.route('/logTeacher', methods=['POST'])
 def logTeacher():
     users = mongo.db.Users
-    login_user = users.find_one({'name' : request.form['username']})
+    login_user = users.find_one({'username' : request.form['username']})
     login_pass = users.find_one({'password' : request.form['pass']}) 
     log_claseA = "A" 
     log_claseB = "B" 
