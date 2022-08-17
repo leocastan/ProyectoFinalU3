@@ -16,7 +16,6 @@ app.config['MONGO_URI'] = 'mongodb://localhost:27017/Proyecto-U3'
 
 mongo = PyMongo(app)
 
-
 @app.route('/')
 def administrador():
     if 'username' in session:
