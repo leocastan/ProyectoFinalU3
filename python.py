@@ -107,7 +107,7 @@ def logDo():
 @app.route('/logStudent', methods=['POST'])
 def logStudent():
     users = mongo.db.Users
-    login_user = users.find_one({'name': request.form['username']})
+    login_user = users.find_one({'username': request.form['username']})
     login_pass = users.find_one({'password': request.form['pass']})
     login_alum = "Alumno"
 

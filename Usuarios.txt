@@ -1,0 +1,11 @@
+Administrador:
+	-admin1
+	-12345
+
+Docente
+	-docente1
+	-12345
+
+Estudiante
+	-estudiante1
+	-12345

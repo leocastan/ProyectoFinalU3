@@ -65,7 +65,7 @@
     <div class="wrapper d-flex align-items-stretch" style="align-content: center ;">
       <div class="jumbotron">
         <div id="content" class="p-4 p-md-5 pt-5">
-          <h2 class="mb-4">Ingrese nuevo Administrador</h2>
+          <h2 class="mb-4">Ingrese Nuevo Usuario</h2>
           <div class="wrap-login" id="formulario" name="formulario">
             <form method=POST action="{{ url_for('regAdmin') }}">
               <div class="form-group">
@@ -101,6 +101,17 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" name="pass" placeholder="Password" required>
               </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Tipo de Usuario</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="anio_lectivo">
+                  <option>Administrador</option>
+                  <option>Docente</option>
+                  <option>Estudiante</option>
+                </select>
+              </div>
+
+
+
               <button type="submit" name="submitButton" class="btn btn-primary btn-block"
                 onclick="alert('Se registro al nuevo usuario administrador')">Registrar</button>
             </form>
