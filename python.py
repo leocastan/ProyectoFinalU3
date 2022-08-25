@@ -136,6 +136,8 @@ def logAl():
 # ---------------------------------------
 # Register an Admin
 # ---------------------------------------
+
+
 @app.route('/regAdmin', methods=['POST', 'GET'])
 def regAdmin():
     if request.method == 'POST':
@@ -152,7 +154,12 @@ def regAdmin():
                     'direccion': request.form['direccion'],
                     'username': request.form['username'],
                     'password': request.form['pass'],
-                    'userType': 'Administrador', })
+                    'userType': request.form['tipo_usuario'],
+                    'titulo_Universitario': request.form['titulo_Universitario'],
+                    'foto': request.form['foto'],
+                    'paralelo': request.form['paralelo'],
+                    'anio_lectivo': request.form['anio_lectivo'],
+                })
                 session['username'] = request.form['username']
             return redirect(url_for('docente'))
         return 'Ese usuario ya existe!'
@@ -161,6 +168,8 @@ def regAdmin():
 # ---------------------------------------
 # Register a Teacher
 # ---------------------------------------
+
+
 @app.route('/regTeacher', methods=['POST', 'GET'])
 def regTeacher():
     if request.method == 'POST':
@@ -194,6 +203,8 @@ def docenteReg():
 # ---------------------------------------
 # Register a Student
 # ---------------------------------------
+
+
 @app.route('/regStudent', methods=['POST', 'GET'])
 def regStudent():
     if request.method == 'POST':
@@ -202,7 +213,7 @@ def regStudent():
         if existing_user is None:
             if 'submitButton' in request.form:
                 users.insert_one({
-                     'id_Institucional': request.form['id_Institucional'],
+                    'id_Institucional': request.form['id_Institucional'],
                     'cedula': request.form['cedula'],
                     'nombre': request.form['nombre'],
                     'apellido': request.form['apellido'],
@@ -256,6 +267,19 @@ def logUser():
 @app.route('/loginAlumno')
 def logAlumno():
     return render_template('/IAlumnos.html')
+
+#Ver Alumnos
+@app.route('/verAlumnosA')
+def verAlumnosA():    
+    Alumn_list = mongo.db.Users.find({'paralelo' : "A"})
+    return render_template("paraleloA.html", Alumn_list = Alumn_list)
+
+#Ver Alumnos
+@app.route('/verAlumnosB')
+def verAlumnosB():
+    Alumn_list = mongo.db.Users.find({'paralelo' : "B"})
+    return render_template("paraleloB.html", Alumn_list = Alumn_list)
+
 
 
 # ---------------------------------------

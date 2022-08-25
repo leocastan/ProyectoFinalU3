@@ -30,11 +30,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-          <li class="nav-item active">
+          <li class="nav-item active" style="display: none">
             <a class="nav-link" href="{{ url_for('regTeacher') }}">Registo Docente <span
                 class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item active" style="display: none">
             <a class="nav-link" href="{{ url_for('estudianteReg') }}">Registro Alumnos <span
                 class="sr-only">(current)</span></a>
           </li>
@@ -103,17 +103,51 @@
               </div>
               <div class="form-group">
                 <label for="exampleFormControlSelect1">Tipo de Usuario</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="anio_lectivo">
+                <select class="form-control" id="exampleFormControlSelect1" name="tipo_usuario">
                   <option>Administrador</option>
                   <option>Docente</option>
                   <option>Estudiante</option>
                 </select>
               </div>
+              <div class="form-group">
 
+                <label for="exampleFormControlSelect1">------------------Datos de Docentes-----------------</label>
 
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Titulo Universitario</label>
+                <input type="text" class="form-control" name="titulo_Universitario" placeholder="Ninguno">
+              </div>
 
-              <button type="submit" name="submitButton" class="btn btn-primary btn-block"
-                onclick="alert('Se registro al nuevo usuario administrador')">Registrar</button>
+              <label for="exampleFormControlSelect1">----------------Datos de Estudiantes----------------</label>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Fotografía</label>
+                <div>
+                  <center><input type="file" name="foto"></center>
+                </div>
+                
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Paralelo</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="paralelo" placeholder="Ninguno">
+                  <option> </option>
+                  <option>A</option>
+                  <option>B</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Año Lectivo</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="anio_lectivo" placeholder="Ninguno">
+                  <option> </option>
+                  <option>L002020</option>
+                  <option>L002021</option>
+                  <option>L002022</option>
+                </select>
+
+                <br>
+                <button type="submit" name="submitButton" class="btn btn-primary btn-block"
+                  onclick="alert('Se registro al nuevo usuario administrador')">Registrar</button>
             </form>
           </div>
         </div>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Administrador</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<!--Owner Styles-->
+<style>
+  body {
+    background: url(https://rare-gallery.com/thumbs/866852-School-Schoolgirls.jpg) no-repeat center center fixed;
+    background-size: cover;
+    max-height: 718px;
+  }
+</style>
+
+
+<body>
+
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ url_for('administrador') }}">Registrar Calificaciones</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active" style="display: none">
+            <a class="nav-link" href="{{ url_for('regTeacher') }}">Seguimiento Estudiantes <span
+                class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('CerrarSession') }}">Cerrar Sesion</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+  </div>
+  <div class="container">
+    {% for i in Alumn_list %}
+    <div class="card">
+      <figure>
+        {{i.foto}}
+        <!--<img src="https://www.fotografospardo.com/content/img/web/LOTE%201.jpg" alt="">-->
+      </figure>
+      <div class="contenido">
+        <h3 class="nombre">{{i.nombre}}</h3>
+        <h3 class="apellido">{{i.apellido}}</h3>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+
+
+  <script src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/popper.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/main.js"></script>
+
+</body>
+
+</html>
