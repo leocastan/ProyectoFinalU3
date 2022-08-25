@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Guess</title>
+    <link rel="stylesheet" href="../static/css/adivina.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    body {
+      background: url(https://rare-gallery.com/thumbs/866852-School-Schoolgirls.jpg) no-repeat center center fixed;
+      background-size: cover;
+      max-height: 718px;
+    }
+  </style>
+<body>
+   <img src="../imagenes/right.png" alt="" id="checkmark">
+   <img src="../imagenes/wrong.png" alt="" id="wrong">
+    <div class="top">
+       <button id="start" onclick="startGame()">Comenzar</button>
+        <div id="color1" class="colorText color1"></div>
+        <div id="color2" class="colorText color2"></div>
+    </div>
+    <div class="bottom">
+       <div class="row">
+        <div id="Azul" class="color blue"></div>
+        <div id="Rojo" class="color red"></div>
+       </div>
+       <div class="row">
+        <div id="Verde" class="color green"></div>
+        <div id="Amarillo" class="color yellow"></div>
+       </div>
+    </div>
+    <span id="correct"></span>
+    <span id="time"></span>
+</body>
+<script src="../static/js/adivina.js"></script>
+</html>

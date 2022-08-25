@@ -280,6 +280,11 @@ def verAlumnosB():
     Alumn_list = mongo.db.Users.find({'paralelo' : "B"})
     return render_template("paraleloB.html", Alumn_list = Alumn_list)
 
+#Iniciar juego
+@app.route('/iniciarJuego')
+def iniciarJuego():
+    return render_template("adivina.html")
+
 
 
 # ---------------------------------------
