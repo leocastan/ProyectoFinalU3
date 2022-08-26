@@ -21,7 +21,7 @@
 <body>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{{ url_for('administrador') }}">Registro Administrador</a>
+      <a class="navbar-brand" href="{{ url_for('administrador') }}">Registro Usuario</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,28 +30,20 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-          <li class="nav-item active" style="display: none">
-            <a class="nav-link" href="{{ url_for('regTeacher') }}">Registo Docente <span
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('regTeacher') }}">Registar Paralelo <span
                 class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active" style="display: none">
-            <a class="nav-link" href="{{ url_for('estudianteReg') }}">Registro Alumnos <span
+          <li class="nav-item active" >
+            <a class="nav-link" href="{{ url_for('regStudent') }}">Registro Año Lectivo <span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active" >
+            <a class="nav-link" href="{{ url_for('regMatricula') }}">Registro Matricula<span
                 class="sr-only">(current)</span></a>
           </li>
 
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Año Lectivo
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">L002020</a>
-              <a class="dropdown-item" href="#">L002021</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">L002022</a>
-            </div>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('CerrarSession') }}">Cerrar Sesion</a>
           </li>
@@ -126,7 +118,7 @@
                 <div>
                   <center><input type="file" name="foto"></center>
                 </div>
-                
+
               </div>
               <div class="form-group">
                 <label for="exampleFormControlSelect1">Paralelo</label>
@@ -152,6 +144,77 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="col-md-10" style="width: 800px;">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="text-center">Editar Registros</h5>
+
+      </div>
+      <div class="card-body">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">id_institucional</th>
+              <th scope="col">Cedula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>
+              <th scope="col">Tipo_usuario</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Paralelo</th>
+              <th scope="col">Año Lectivo</th>
+              <th><a href="{{ url_for('mostrarUsers') }}" type="button" class="form-control">Ver</a></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for personas in personas %}
+            <form>
+              <tr>
+                <td><input type="text" class="form-control" value="{{personas.id_institucional}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.cedula}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.nombre}}" name="lastname" disabled
+                    style="width: 125px;"></td>
+                <td><input type="text" class="form-control" value="{{personas.apellido}}" name="mail" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.telefono}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.direccion}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.username}}" name="lastname" disabled
+                    style="width: 125px;"></td>
+                <td><input type="text" class="form-control" value="{{personas.password}}" name="mail" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.tipo_usuario}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.titulo_Universitario}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.paralelo}}" name="lastname" disabled
+                    style="width: 125px;"></td>
+                <td><input type="text" class="form-control" value="{{personas.anio_lectivo}}" name="mail" disabled></td>
+
+                <td>
+
+                <td>
+
+                </td>
+              </tr>
+            </form>
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+
+      </div>
+
     </div>
   </div>
 

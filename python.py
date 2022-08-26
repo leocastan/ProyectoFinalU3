@@ -6,7 +6,6 @@ import bcrypt
 from bson import ObjectId
 from bson.json_util import dumps
 
-
 app = Flask(__name__, template_folder='templates')
 
 
@@ -166,31 +165,24 @@ def regAdmin():
     return render_template('/regAdmin.html')
 
 # ---------------------------------------
-# Register a Teacher
+# Register a Course
 # ---------------------------------------
 
 
 @app.route('/regTeacher', methods=['POST', 'GET'])
 def regTeacher():
     if request.method == 'POST':
-        users = mongo.db.Users
-        existing_user = users.find_one({'username': request.form['username']})
-        if existing_user is None:
+        users = mongo.db.Paralelo
+        existing_paralelo = users.find_one({'paralelo': request.form['paralelo']})
+        if existing_paralelo is None:
             if 'submitButton' in request.form:
                 users.insert_one({
-                    'id_Institucional': request.form['id_Institucional'],
-                    'cedula': request.form['cedula'],
-                    'nombre': request.form['nombre'],
-                    'apellido': request.form['apellido'],
-                    'telefono': request.form['telefono'],
-                    'direccion': request.form['direccion'],
-                    'titulo_Universitario': request.form['titulo_Universitario'],
-                    'username': request.form['username'],
-                    'password': request.form['pass'],
-                    'userType': 'Docente', })
-                session['username'] = request.form['username']
-            return redirect(url_for('administrador'))
-        return 'Ese usuario ya existe!'
+                    'paralelo': request.form['paralelo'],
+                    'docente': request.form['docente'],
+                    'anio_lectivo': request.form['anio_lectivo'], })
+                session['paralelo'] = request.form['paralelo']
+            return redirect(url_for('docenteReg'))
+        return 'Ese paralelo ya existe!'
     return render_template('/regTeacher.html')
 
 
@@ -201,33 +193,24 @@ def docenteReg():
     return render_template('/selUser.html')
 
 # ---------------------------------------
-# Register a Student
+# Register a Year
 # ---------------------------------------
 
 
 @app.route('/regStudent', methods=['POST', 'GET'])
 def regStudent():
     if request.method == 'POST':
-        users = mongo.db.Users
-        existing_user = users.find_one({'username': request.form['username']})
+        users = mongo.db.Anio_lectivo
+        existing_user = users.find_one({'anio_lectivo': request.form['anio_lectivo']})
         if existing_user is None:
             if 'submitButton' in request.form:
                 users.insert_one({
-                    'id_Institucional': request.form['id_Institucional'],
-                    'cedula': request.form['cedula'],
-                    'nombre': request.form['nombre'],
-                    'apellido': request.form['apellido'],
-                    'telefono': request.form['telefono'],
-                    'direccion': request.form['direccion'],
-                    'paralelo': request.form['paralelo'],
                     'anio_lectivo': request.form['anio_lectivo'],
-                    'username': request.form['username'],
-                    'password': request.form['pass'],
-                    'foto': request.form['foto'],
-                    'userType': 'Estudiante', })
-                session['username'] = request.form['username']
-            return redirect(url_for('administrador'))
-        return 'Ese usuario ya existe!'
+                    'fecha_inicia': request.form['fecha_inicia'],
+                    'fecha_termina': request.form['fecha_termina'], })
+                session['anio_lectivo'] = request.form['anio_lectivo']
+            return redirect(url_for('estudianteReg'))
+        return 'Ese año lectivo ya existe!'
     return render_template('/regStudent.html')
 
 
@@ -236,6 +219,35 @@ def estudianteReg():
     if 'username' in session:
         return render_template('/regStudent.html')
     return render_template('/selUser.html')
+
+# ---------------------------------------
+# Register a Matricula
+# ---------------------------------------
+
+
+@app.route('/regMatricula', methods=['POST', 'GET'])
+def regMatricula():
+    if request.method == 'POST':
+        users = mongo.db.Matricula
+        existing_user = users.find_one({'estudiante': request.form['estudiante']})
+        if existing_user is None:
+            if 'submitButton' in request.form:
+                users.insert_one({
+                    'estudiante': request.form['estudiante'],
+                    'paralelo': request.form['paralelo'],
+                    'asignatura': request.form['asignatura'], })
+                session['estudiante'] = request.form['estudiante']
+            return redirect(url_for('matriculaReg'))
+        return 'EL estudiante ya esta registrado en esa asignatura!'
+    return render_template('/regMatricula.html')
+
+
+@app.route('/estudiante')
+def matriculaReg():
+    if 'username' in session:
+        return render_template('/regMatricula.html')
+    return render_template('/selUser.html')
+
 
 # ---------------------------------------
 # Cerrar Sesion
@@ -285,7 +297,11 @@ def verAlumnosB():
 def iniciarJuego():
     return render_template("adivina.html")
 
-
+@app.route('/regAdmin')
+def mostrarUsers():
+    personas = mongo.db.Users
+    personasReceived = personas.find()
+    return render_template('regAdmin.html', personas = personasReceived)
 
 # ---------------------------------------
 # Main Method

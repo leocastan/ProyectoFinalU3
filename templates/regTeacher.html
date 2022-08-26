@@ -22,7 +22,7 @@
 
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{{ url_for('administrador') }}">Registro Administrador</a>
+      <a class="navbar-brand" href="{{ url_for('administrador') }}">Registro Usuario</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,27 +32,19 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('regTeacher') }}">Registo Docente <span
+            <a class="nav-link" href="{{ url_for('regTeacher') }}">Registar Paralelo <span
                 class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('regStudent') }}">Registro Alumnos <span
+          <li class="nav-item active" >
+            <a class="nav-link" href="{{ url_for('regStudent') }}">Registro Año Lectivo <span
                 class="sr-only">(current)</span></a>
           </li>
 
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Año Lectivo
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">L002020</a>
-              <a class="dropdown-item" href="#">L002021</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">L002022</a>
-            </div>
+          <li class="nav-item active" >
+            <a class="nav-link" href="{{ url_for('regMatricula') }}">Registro Matricula<span
+                class="sr-only">(current)</span></a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('CerrarSession') }}">Cerrar Sesion</a>
           </li>
@@ -66,52 +58,72 @@
     <div class="wrapper d-flex align-items-stretch" style="align-content: center ;">
       <div class="jumbotron">
         <div id="content" class="p-4 p-md-5 pt-5">
-          <h2 class="mb-4">Ingrese nuevo Docente</h2>
+          <h2 class="mb-4">Ingrese nuevo paralelo</h2>
           <div class="wrap-login">
             <form method=POST action="{{ url_for('regTeacher') }}">
               <div class="form-group">
-                <label for="exampleInputPassword1">Id_Institucional</label>
-                <input type="text" class="form-control" name="id_Institucional" placeholder="Id_Institucional" required>
+                <label for="exampleInputPassword1">Paralelo</label>
+                <input type="text" class="form-control" name="paralelo" placeholder="paralelo" required>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Cedula</label>
-                <input type="text" class="form-control" name="cedula" placeholder="Cedula" required>
+                <label for="exampleInputPassword1">User docente</label>
+                <input type="text" class="form-control" name="docente" placeholder="docente" required>
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                <label for="exampleFormControlSelect1">Año Lectivo</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="anio_lectivo" placeholder="Ninguno">
+                  <option> </option>
+                  <option>L002022</option>
+                </select>
               </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Apellido</label>
-                <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Teléfono</label>
-                <input type="text" class="form-control" name="telefono" placeholder="Teléfono" required>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Dirección</label>
-                <input type="text" class="form-control" name="direccion" placeholder="Dirección" required>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Titulo Universitario</label>
-                <input type="text" class="form-control" name="titulo_Universitario" placeholder="Titulo Universitario"
-                  required>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Username" required>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" name="pass" placeholder="Password" required>
-              </div>
+              
               <button type="submit" name="submitButton" class="btn btn-primary btn-block"
-                onclick="alert('Se registro al nuevo usuario administrador')">Registrar</button>
+                >Registrar</button>
             </form>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="col-md-10" style="width: 800px;">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="text-center">Editar Registros</h5>
+
+      </div>
+      <div class="card-body">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Paralelo</th>
+              <th scope="col">Docente</th>
+              <th scope="col">Año Lectivo</th>
+              <th><a href="{{ url_for('regTeacher') }}" type="button" class="form-control">Ver</a></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for personas in personas %}
+            <form>
+              <tr>
+                <td><input type="text" class="form-control" value="{{personas.paralelo}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.docente}}" name="name"
+                    style="width: 125px;" disabled></td>
+                <td><input type="text" class="form-control" value="{{personas.anio_lectivo}}" name="lastname" disabled
+                    style="width: 125px;"></td>
+              </tr>
+            </form>
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+
+      </div>
+
     </div>
   </div>
 
